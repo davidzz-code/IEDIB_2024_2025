@@ -5,9 +5,10 @@ capital_words_ending_in_a = FILTER words BY word MATCHES '^[A-Z].*a$';
 grouped_words = GROUP capital_words_ending_in_a BY word;
 counted_words = FOREACH grouped_words GENERATE group, COUNT(capital_words_ending_in_a) as counted;
 ordered_counted_words = ORDER counted_words BY counted DESC, group ASC;
+
 DUMP ordered_counted_words;
 
-/* Resultado de la query:
+/* RESULTADO:
 (Camila,150)
 (Dorotea,131)
 (Panza,120)
