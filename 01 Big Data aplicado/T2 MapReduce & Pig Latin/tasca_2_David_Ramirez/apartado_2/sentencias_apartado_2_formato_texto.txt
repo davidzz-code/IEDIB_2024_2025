@@ -73,9 +73,9 @@ average_imdb_2024 = FOREACH (GROUP data_2024 BY type) GENERATE group AS type, AV
 
 DUMP average_imdb_2024;
 
--- RESULTADO: (Movie,5.723170728218265)
+/* RESULTADO: (Movie,5.723170728218265)
 	      (TV Series,6.7458823512582216)
-
+*/
 
 
 
@@ -89,7 +89,7 @@ top_10_years = LIMIT sorted_movies_by_year 10;
 
 DUMP top_10_years;
 
--- RESULTADO: (2017,2643)
+/* RESULTADO: (2017,2643)
 		(2016,2425)
 		(2018,2358)
 		(2015,2252)
@@ -99,7 +99,7 @@ DUMP top_10_years;
 		(2011,1313)
 		(2010,1146)
 		(2009,1082)
-
+*/
 
 -- 8) Mostra els 5 anys que tenen una millor valoració mitjana en IMDB de les seves sèries de drama (poden haver-hi altres gèneres també), ordenats de major a menor valoració.
 drama_series = FILTER prime_data BY type == 'TV Series' AND genres MATCHES '.*Drama.*';
@@ -110,12 +110,12 @@ top_5_years = LIMIT sorted_by_rating 5;
 
 DUMP top_5_years;
 
--- RESULTADO: (1963,8.300000190734863)
+/* RESULTADO: (1963,8.300000190734863)
 		(1967,8.150000095367432)
 		(1979,8.019999980926514)
 		(1972,8.0)
 		(1969,8.0)
-
+*/
 
 -- 9) Exporta a un fitxer els següents camps de les 10 sèries des de l'any 2020 (inclòs) amb millor valoració: title, releaseYear, imdbAverageRating i imdbNumVotes.
 series_2020_onwards = FILTER prime_data BY releaseYear >= 2020 AND type == 'TV Series';
@@ -124,6 +124,8 @@ top_10_series = LIMIT ordered_series 10;
 result = FOREACH top_10_series GENERATE title, releaseYear, imdbAverageRating, imdbNumVotes;
 
 STORE result INTO 'output_series_2020_best_rating' USING PigStorage(',');
+
+-- RESULTADO: No hay resultado ya que hemos usado STORE para guardar el resultado en otro archivo
 
 
 
