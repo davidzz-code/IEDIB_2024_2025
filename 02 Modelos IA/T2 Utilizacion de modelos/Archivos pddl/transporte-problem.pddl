@@ -1,0 +1,6 @@
+(define (problem transporte-mad-bcn)
+    (:domain transporte)
+    (:objects a1 a2 bcn c1 c2 mad)
+    (:init (aeropuerto bcn) (aeropuerto mad) (en a1 mad) (en a2 bcn) (en c1 mad) (en c2 bcn) (avion a1) (avion a2) (carga c1) (carga c2))
+    (:goal (and (en c1 bcn) (en c2 mad)))
+)

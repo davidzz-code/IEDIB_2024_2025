@@ -1,0 +1,6 @@
+(cargar a1 c1 mad)
+(cargar a2 c2 bcn)
+(volar a1 mad bcn)
+(descargar a1 c1 bcn)
+(volar a2 bcn mad)
+(descargar a2 c2 mad)
