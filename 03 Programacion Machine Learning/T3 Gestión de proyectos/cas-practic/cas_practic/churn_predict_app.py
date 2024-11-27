@@ -4,7 +4,7 @@ from churn_predict_service import predict_single
 
 app = Flask('churn-predict')
 
-with open('models/churn-model.pck', 'rb') as f:
+with open('../models/churn-model.pck', 'rb') as f:
     dv, model = pickle.load(f)
 
 
