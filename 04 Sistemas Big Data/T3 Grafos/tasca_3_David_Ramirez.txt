@@ -1,0 +1,625 @@
+CREATE
+  // Géneros
+  (sciFi:Genre {name: "Science fiction"}),
+  (fantasy:Genre {name: "Fantasy"}),
+  (suspense:Genre {name: "Suspense"}),
+  (romance:Genre {name: "Romance"}),
+  (horror:Genre {name: "Horror"}),
+
+  // Películas
+  (forrestGump:Movie {title: "Forrest Gump", year: 1994, minutes: 142}),
+  (lordOfTheRings:Movie {title: "The Lord of the Rings", year: 2001, minutes: 178}),
+  (shining:Movie {title: "The Shining", year: 1980, minutes: 146}),
+  (interstellar:Movie {title: "Interstellar", year: 2014, minutes: 169}),
+  (hpPhilosophersStone:Movie {title: "Harry Potter and the Philosopher's Stone", year: 2001, minutes: 152}),
+  (pulpFiction:Movie {title: "Pulp Fiction", year: 1994, minutes: 154}),
+  (djangoUnchained:Movie {title: "Django Unchained", year: 2012, minutes: 165}),
+  (daVinciCode:Movie {title: "The Da Vinci Code", year: 2006, minutes: 149}),
+  (starWars:Movie {title: "Star Wars: A New Hope", year: 1977, minutes: 121}),
+  (titanic:Movie {title: "Titanic", year: 1997, minutes: 195}),
+
+  // Libros
+  (forrestGumpBook:Book {title: "Forrest Gump", year: 1986, pages: 422}),
+  (lordOfTheRingsBook:Book {title: "The Lord of the Rings", year: 1954, pages: 1178}),
+  (shiningBook:Book {title: "The Shining", year: 1977, pages: 447}),
+  (pillarsOfEarthBook:Book {title: "The Pillars of the Earth", year: 1989, pages: 973}),
+  (hobbitBook:Book {title: "The Hobbit", year: 1937, pages: 310}),
+  (prideAndPrejudiceBook:Book {title: "Pride and Prejudice", year: 1813, pages: 279}),
+  (hungerGamesBook:Book {title: "The Hunger Games", year: 2008, pages: 374}),
+  (draculaBook:Book {title: "Dracula", year: 1897, pages: 418}),
+  (hpPhilosophersStoneBook:Book {title: "Harry Potter and the Philosopher's Stone", year: 1997, pages: 223}),
+  (nameOfTheWindBook:Book {title: "The name of the wind", year: 2007, pages: 662}),
+
+  // Usuarios
+  (david:User {name: "David", birth_year: 2000}),
+  (andres:User {name: "Andrés", birth_year: 1994}),
+  (eva:User {name: "Eva", birth_year: 1991}),
+  (mercedes:User {name: "Mercedes", birth_year: 1964}),
+  (antonio:User {name: "Antonio", birth_year: 1963}),
+  (isabel:User {name: "Isabel", birth_year: 1994}),
+  (joan:User {name: "Joan", birth_year: 1997}),
+  (carla:User {name: "Carla", birth_year: 1995}),
+  (sergio:User {name: "Sergio", birth_year: 1983}),
+  (jimena:User {name: "Jimena", birth_year: 2002}),
+
+  // Relaciones entre películas y libros
+  (forrestGump)-[:BASED_ON]->(forrestGumpBook),
+  (lordOfTheRings)-[:BASED_ON]->(lordOfTheRingsBook),
+  (shining)-[:BASED_ON]->(shiningBook),
+  (hpPhilosophersStone)-[:BASED_ON]->(hpPhilosophersStoneBook),
+
+  // Géneros de películas
+  (forrestGump)-[:BELONGS_TO]->(drama),
+  (lordOfTheRings)-[:BELONGS_TO]->(fantasy),
+  (shining)-[:BELONGS_TO]->(horror),
+  (interstellar)-[:BELONGS_TO]->(sciFi),
+  (hpPhilosophersStone)-[:BELONGS_TO]->(fantasy),
+  (pulpFiction)-[:BELONGS_TO]->(suspense),
+  (djangoUnchained)-[:BELONGS_TO]->(action),
+  (daVinciCode)-[:BELONGS_TO]->(suspense),
+  (starWars)-[:BELONGS_TO]->(sciFi),
+  (titanic)-[:BELONGS_TO]->(romance),
+
+  // Géneros de libros
+  (forrestGumpBook)-[:BELONGS_TO]->(drama),
+  (lordOfTheRingsBook)-[:BELONGS_TO]->(fantasy),
+  (shiningBook)-[:BELONGS_TO]->(horror),
+  (pillarsOfEarthBook)-[:BELONGS_TO]->(drama),
+  (hobbitBook)-[:BELONGS_TO]->(fantasy),
+  (prideAndPrejudiceBook)-[:BELONGS_TO]->(romance),
+  (hungerGamesBook)-[:BELONGS_TO]->(sciFi),
+  (draculaBook)-[:BELONGS_TO]->(horror),
+  (hpPhilosophersStoneBook)-[:BELONGS_TO]->(fantasy),
+  (nameOfTheWindBook)-[:BELONGS_TO]->(fantasy),
+
+  //  **** Relaciones para USUARIOS ****
+
+  // Relaciones entre los usuarios y los géneros
+  (david)-[:INTERESTED_IN]->(sciFi),
+  (david)-[:INTERESTED_IN]->(fantasy),
+  (andres)-[:INTERESTED_IN]->(suspense),
+  (eva)-[:INTERESTED_IN]->(romance),
+  (eva)-[:INTERESTED_IN]->(fantasy),
+  (eva)-[:INTERESTED_IN]->(drama),
+  (mercedes)-[:INTERESTED_IN]->(horror),
+  (mercedes)-[:INTERESTED_IN]->(sciFi),
+  (antonio)-[:INTERESTED_IN]->(suspense),
+  (antonio)-[:INTERESTED_IN]->(drama),
+  (antonio)-[:INTERESTED_IN]->(fantasy),
+  (isabel)-[:INTERESTED_IN]->(suspense),
+  (joan)-[:INTERESTED_IN]->(horror),
+  (joan)-[:INTERESTED_IN]->(sciFi),
+  (joan)-[:INTERESTED_IN]->(romance),
+  (carla)-[:INTERESTED_IN]->(romance),
+  (carla)-[:INTERESTED_IN]->(horror),
+  (sergio)-[:INTERESTED_IN]->(suspense),
+  (jimena)-[:INTERESTED_IN]->(fantasy),
+  (jimena)-[:INTERESTED_IN]->(sciFi),
+
+  // Relaciones de amistad de usuarios
+  (david)-[:HAS_FRIEND]->(andres),
+  (david)-[:HAS_FRIEND]->(carla),
+  (david)-[:HAS_FRIEND]->(isabel),
+  (andres)-[:HAS_FRIEND]->(eva),
+  (andres)-[:HAS_FRIEND]->(jimena),
+  (eva)-[:HAS_FRIEND]->(andres),
+  (eva)-[:HAS_FRIEND]->(sergio),
+  (eva)-[:HAS_FRIEND]->(carla),
+  (mercedes)-[:HAS_FRIEND]->(antonio),
+  (mercedes)-[:HAS_FRIEND]->(jimena),
+  (mercedes)-[:HAS_FRIEND]->(david),
+  (antonio)-[:HAS_FRIEND]->(mercedes),
+  (antonio)-[:HAS_FRIEND]->(joan),
+  (antonio)-[:HAS_FRIEND]->(isabel),
+  (isabel)-[:HAS_FRIEND]->(carla),
+  (isabel)-[:HAS_FRIEND]->(jimena),
+  (isabel)-[:HAS_FRIEND]->(david),
+  (joan)-[:HAS_FRIEND]->(mercedes),
+  (joan)-[:HAS_FRIEND]->(carla),
+  (joan)-[:HAS_FRIEND]->(sergio),
+  (carla)-[:HAS_FRIEND]->(jimena),
+  (sergio)-[:HAS_FRIEND]->(andres),
+  (sergio)-[:HAS_FRIEND]->(david),
+  (jimena)-[:HAS_FRIEND]->(antonio),
+
+  // Relaciones de valoraciones entre usuarios y libros o películas
+  (sergio)-[:REVIEWS {rating: 3, review: "Podría haber sido más emocionante."}]->(daVinciCode),
+  (jimena)-[:REVIEWS {rating: 6, review: "La historia no me ha enganchado, demasiado largo"}]->(nameOfTheWindBook),
+  (david)-[:REVIEWS {rating: 9, review: "Se ha convertido en una de mis películas favoritas"}]->(interstellar),
+  (andres)-[:REVIEWS {rating: 10, review: "Simplemente espectacular"}]->(interstellar),
+  (andres)-[:REVIEWS {rating: 7, review: "Un gran clásico, muy bien adaptado."}]->(lordOfTheRings),
+  (eva)-[:REVIEWS {rating: 8, review: "Buen libro, es inigualable."}]->(nameOfTheWindBook),
+  (mercedes)-[:REVIEWS {rating: 7, review: "Buena película, pero el final me dejó algo insatisfecha."}]->(starWars),
+  (antonio)-[:REVIEWS {rating: 6, review: "Me gustó, pero el ritmo era lento."}]->(draculaBook),
+  (isabel)-[:REVIEWS {rating: 8, review: "Excelente libro, aunque largo y denso en algunos momentos."}]->(pillarsOfEarthBook),
+  (joan)-[:REVIEWS {rating: 10, review: "Un libro fantástico, lo disfruté mucho."}]->(prideAndPrejudiceBook),
+  (carla)-[:REVIEWS {rating: 5, review: "Entretenido, pero esperaba algo más épico."}]->(hobbitBook),
+  (sergio)-[:REVIEWS {rating: 4, review: "Un thriller que te mantiene intrigado, aunque algo predecible."}]->(shiningBook),
+  (jimena)-[:REVIEWS {rating: 9, review: "Me ha encantado el libro y sus personajes, Harry Potter es único."}]->(hpPhilosophersStoneBook),
+  (david)-[:REVIEWS {rating: 8, review: "Un libro muy auténtico."}]->(hpPhilosophersStoneBook),
+  (andres)-[:REVIEWS {rating: 3, review: "Un clásico pero no es mi estilo."}]->(hpPhilosophersStoneBook),
+  (eva)-[:REVIEWS {rating: 10, review: "Siempre me cautiva cada vez que lo releo."}]->(hpPhilosophersStoneBook),
+  (mercedes)-[:REVIEWS {rating: 5, review: "La historia está bien, pero demasiado enfocada a un público joven."}]->(hpPhilosophersStoneBook)
+
+
+
+	1. Recupera el títol de tots els llibres.
+
+	MATCH (b:Book) RETURN b.title
+
+	Respuesta:
+╒══════════════════════════════════════════╕
+│b.title                                   │
+╞══════════════════════════════════════════╡
+│"Forrest Gump"                            │
+├──────────────────────────────────────────┤
+│"The Lord of the Rings"                   │
+├──────────────────────────────────────────┤
+│"The Shining"                             │
+├──────────────────────────────────────────┤
+│"The Pillars of the Earth"                │
+├──────────────────────────────────────────┤
+│"The Hobbit"                              │
+├──────────────────────────────────────────┤
+│"Pride and Prejudice"                     │
+├──────────────────────────────────────────┤
+│"The Hunger Games"                        │
+├──────────────────────────────────────────┤
+│"Dracula"                                 │
+├──────────────────────────────────────────┤
+│"Harry Potter and the Philosopher's Stone"│
+├──────────────────────────────────────────┤
+│"The name of the wind"                    │
+└──────────────────────────────────────────┘
+
+
+	2. Tria el nom d'un gènere i recupera el nom dels usuaris que hi estan interessats.
+
+	MATCH (u:User)-[:INTERESTED_IN]->(:Genre {name: "Fantasy"})
+	RETURN u.name
+
+	Respuesta:
+╒═════════╕
+│u.name   │
+╞═════════╡
+│"David"  │
+├─────────┤
+│"Eva"    │
+├─────────┤
+│"Antonio"│
+├─────────┤
+│"Jimena" │
+└─────────┘
+
+
+	3. Recupera el títol dels llibres i pel·lícules del gènere que has triat abans. Indica en cada cas si és un llibre o una pel·lícula.
+
+	MATCH (item)-[:BELONGS_TO]->(:Genre {name: "Fantasy"})
+	RETURN item.title, labels(item)
+
+	Respuesta:
+╒══════════════════════════════════════════╤════════════╕
+│item.title                                │labels(item)│
+╞══════════════════════════════════════════╪════════════╡
+│"The Lord of the Rings"                   │["Movie"]   │
+├──────────────────────────────────────────┼────────────┤
+│"Harry Potter and the Philosopher's Stone"│["Movie"]   │
+├──────────────────────────────────────────┼────────────┤
+│"The Lord of the Rings"                   │["Book"]    │
+├──────────────────────────────────────────┼────────────┤
+│"The Hobbit"                              │["Book"]    │
+├──────────────────────────────────────────┼────────────┤
+│"Harry Potter and the Philosopher's Stone"│["Book"]    │
+├──────────────────────────────────────────┼────────────┤
+│"The name of the wind"                    │["Book"]    │
+└──────────────────────────────────────────┴────────────┘
+
+
+	4. Tria el nom d'un usuari i recupera el títol dels llibres que pertanyen als gèneres que li interessen.
+
+	MATCH (u:User {name: "Joan"})-[:INTERESTED_IN]->(g:Genre)<-[:BELONGS_TO]-(b:Book)
+	ORDER BY u.name
+	RETURN u.name, b.title, g.name
+
+	Respuesta:
+╒══════╤═════════════════════╤═════════════════╕
+│u.name│b.title              │g.name           │
+╞══════╪═════════════════════╪═════════════════╡
+│"Joan"│"The Hunger Games"   │"Science fiction"│
+├──────┼─────────────────────┼─────────────────┤
+│"Joan"│"Pride and Prejudice"│"Romance"        │
+├──────┼─────────────────────┼─────────────────┤
+│"Joan"│"The Shining"        │"Horror"         │
+├──────┼─────────────────────┼─────────────────┤
+│"Joan"│"Dracula"            │"Horror"         │
+└──────┴─────────────────────┴─────────────────┘
+
+
+
+	5. Tria el títol d'un llibre i recupera quina és la mitjana de les seves valoracions.
+
+	MATCH (b:Book {title: "Harry Potter and the Philosopher's Stone"})<-[r:REVIEWS]-(:User)
+	RETURN b.title, avg(r.rating)
+
+	Respuesta:
+╒══════════════════════════════════════════╤═════════════╕
+│b.title                                   │avg(r.rating)│
+╞══════════════════════════════════════════╪═════════════╡
+│"Harry Potter and the Philosopher's Stone"│7.0          │
+└──────────────────────────────────────────┴─────────────┘
+
+
+	6. Recupera el nom dels usuaris nascuts abans de l'any 1990.
+
+	MATCH (u:User)
+	WHERE u.birth_year < 1990
+	RETURN u.name
+
+	Respuesta:
+╒══════════╕
+│u.name    │
+╞══════════╡
+│"Mercedes"│
+├──────────┤
+│"Antonio" │
+├──────────┤
+│"Sergio"  │
+└──────────┘
+
+
+	7. Recupera el títol de totes les pel·lícules que estan basades en algun llibre. Mostra també el títol del llibre estan basades cada una d'elles.
+
+	MATCH (m:Movie)-[:BASED_ON]->(b:Book)
+	RETURN m.title AS Movie, b.title AS Book
+
+	Respuesta:
+╒══════════════════════════════════════════╤══════════════════════════════════════════╕
+│Movie                                     │Book                                      │
+╞══════════════════════════════════════════╪══════════════════════════════════════════╡
+│"Forrest Gump"                            │"Forrest Gump"                            │
+├──────────────────────────────────────────┼──────────────────────────────────────────┤
+│"The Lord of the Rings"                   │"The Lord of the Rings"                   │
+├──────────────────────────────────────────┼──────────────────────────────────────────┤
+│"The Shining"                             │"The Shining"                             │
+├──────────────────────────────────────────┼──────────────────────────────────────────┤
+│"Harry Potter and the Philosopher's Stone"│"Harry Potter and the Philosopher's Stone"│
+└──────────────────────────────────────────┴──────────────────────────────────────────┘
+
+
+	8. Recupera el títol dels llibres que tenen una valoració de 4 o més.
+
+	MATCH (b:Book)<-[r:REVIEWS]-(:User)
+	WHERE r.rating >= 4
+	RETURN DISTINCT b.title AS Book
+
+	Respuesta:
+╒══════════════════════════════════════════╕
+│Book                                      │
+╞══════════════════════════════════════════╡
+│"The Shining"                             │
+├──────────────────────────────────────────┤
+│"The Pillars of the Earth"                │
+├──────────────────────────────────────────┤
+│"The Hobbit"                              │
+├──────────────────────────────────────────┤
+│"Pride and Prejudice"                     │
+├──────────────────────────────────────────┤
+│"Dracula"                                 │
+├──────────────────────────────────────────┤
+│"Harry Potter and the Philosopher's Stone"│
+├──────────────────────────────────────────┤
+│"The name of the wind"                    │
+└──────────────────────────────────────────┘
+
+
+	9. Recupera la valoració mitjana de cada gènere (la mitjana del ratings de totes les revisions dels seus llibres i pel·lícules). Mostra-ho ordenat per la valoració mitjana, de major a menor.
+
+	MATCH (g:Genre)<-[:BELONGS_TO]-(item)<-[r:REVIEWS]-(:User)
+	RETURN g.name AS Genre, avg(r.rating) AS Average_rating
+	ORDER BY Average_rating DESC
+
+	Respuesta:
+╒═════════════════╤═════════════════╕
+│Genre            │Average_rating   │
+╞═════════════════╪═════════════════╡
+│"Romance"        │10.0             │
+├─────────────────┼─────────────────┤
+│"Science fiction"│8.666666666666666│
+├─────────────────┼─────────────────┤
+│"Fantasy"        │6.777777777777778│
+├─────────────────┼─────────────────┤
+│"Horror"         │5.0              │
+├─────────────────┼─────────────────┤
+│"Suspense"       │3.0              │
+└─────────────────┴─────────────────┘
+
+
+	10. Volem fer grups d'usuaris segons la dècada en què han nascut. Recupera la valoració mitjana de cada grup d'edat (els ratings de totes les revisions que han fet els seus usuaris). Mostra-ho ordenat per dècada, de 	més antiga a més recent.
+
+	MATCH (user:User)-[review:REVIEWS]->(item)
+	WITH user, review, (user.birth_year / 10) * 10 AS Decade
+	RETURN Decade, avg(review.rating) AS Average_rating
+	ORDER BY Decade ASC
+
+	Respuesta:
+╒══════╤═════════════════╕
+│Decade│Average_rating   │
+╞══════╪═════════════════╡
+│1960  │6.0              │
+├──────┼─────────────────┤
+│1980  │3.5              │
+├──────┼─────────────────┤
+│1990  │7.624999999999999│
+├──────┼─────────────────┤
+│2000  │8.0              │
+└──────┴─────────────────┘
+
+
+	11. Afegeix un nou usuari i una revisió feta per aquest usuari sobre un llibre existent. Dona valor a totes les propietats de l'usuari i de la revisió.
+
+	CREATE (maria:User {name: "Maria", birth_year: 1995})
+	WITH maria
+	MATCH (book:Book {title: "Dracula"})
+	CREATE (maria)-[:REVIEWS {rating: 9, review: "Una obra maestra del terror."}]->(book)
+
+	Respuesta:
+Added 1 label, created 1 node, set 4 properties, created 1 relationship, completed after 120 ms.
+
+
+
+
+	12. Modifica el nou usuari i la nova revisió, de manera que incrementis en 1 l'any de naixement, i baixis en 1 la valoració (rating).
+
+	MATCH (user:User {name: "Maria"})-[review:REVIEWS]->(book:Book {title: "Dracula"})
+	SET user.birth_year = user.birth_year + 1,
+	    review.rating = review.rating - 1
+	RETURN user, review
+
+	Respuesta:
+╒════════════════════════════════════════╤═════════════════════════════════════════════════════════════╕
+│user                                    │review                                                       │
+╞════════════════════════════════════════╪═════════════════════════════════════════════════════════════╡
+│(:User {name: "Maria",birth_year: 1996})│[:REVIEWS {review: "Una obra maestra del terror.",rating: 8}]│
+└────────────────────────────────────────┴─────────────────────────────────────────────────────────────┘
+
+
+	13. Elimina l'usuari i la valoració que has creat.
+
+	MATCH (user:User {name: "Maria"})-[review:REVIEWS]->(book:Book {title: "Dracula"})
+	DELETE review, user
+
+	Respuesta:
+Deleted 1 node, deleted 1 relationship, completed after 37 ms.
+
+
+
+
+	14. Obté un graf GDS amb els nodes dels usuaris i les relacions d'amistat. Tria un usuari i fes un recorregut en amplitud des d'ell, seguint les relacions d'amistat. Fes després un recorregut en profunditat des del 		mateix node inicial. En ambdós casos, has d'obtenir la ruta sencera.
+
+	// Creación de GDS
+	CALL gds.graph.project(‘users_and_friends’, ‘User’,  ‘HAS_FRIEND’)
+
+	// Recorrido por amplitud
+	MATCH (origen:User {name:'Eva'})
+	CALL gds.bfs.stream('user_and_friends', {sourceNode: origen })
+	YIELD path
+	RETURN path
+
+	Respuesta:
+╒══════════════════════════════════════════════════════════════════════╕
+│path                                                                  │
+╞══════════════════════════════════════════════════════════════════════╡
+│(:User {name: "Eva",birth_year: 1991})-[:NEXT]->(:User {name: "Andrés"│
+│,birth_year: 1994})-[:NEXT]->(:User {name: "Carla",birth_year: 1995})-│
+│[:NEXT]->(:User {name: "Sergio",birth_year: 1983})-[:NEXT]->(:User {na│
+│me: "Jimena",birth_year: 2002})-[:NEXT]->(:User {name: "David",birth_y│
+│ear: 2000})-[:NEXT]->(:User {name: "Antonio",birth_year: 1963})-[:NEXT│
+│]->(:User {name: "Isabel",birth_year: 1994})-[:NEXT]->(:User {name: "M│
+│ercedes",birth_year: 1964})-[:NEXT]->(:User {name: "Joan",birth_year: │
+│1997})                                                                │
+└──────────────────────────────────────────────────────────────────────┘
+
+	// Recorrido por profundidad
+	MATCH (origen:User {name:'Eva'})
+	CALL gds.dfs.stream('user_and_friends', {sourceNode: origen })
+	YIELD path
+	RETURN path
+
+	Respuesta:
+╒══════════════════════════════════════════════════════════════════════╕
+│path                                                                  │
+╞══════════════════════════════════════════════════════════════════════╡
+│(:User {name: "Eva",birth_year: 1991})-[:NEXT]->(:User {name: "Sergio"│
+│,birth_year: 1983})-[:NEXT]->(:User {name: "David",birth_year: 2000})-│
+│[:NEXT]->(:User {name: "Isabel",birth_year: 1994})-[:NEXT]->(:User {na│
+│me: "Jimena",birth_year: 2002})-[:NEXT]->(:User {name: "Antonio",birth│
+│_year: 1963})-[:NEXT]->(:User {name: "Joan",birth_year: 1997})-[:NEXT]│
+│->(:User {name: "Mercedes",birth_year: 1964})-[:NEXT]->(:User {name: "│
+│Carla",birth_year: 1995})-[:NEXT]->(:User {name: "Andrés",birth_year: │
+│1994})                                                                │
+└──────────────────────────────────────────────────────────────────────┘
+
+
+	15. Amb el teu graf GDS, tria dos usuaris que no siguin amics i recupera el camí més curt entre ells, emprant les relacions d'amistat, emprant l'algorisme de Dijkstra.
+
+	MATCH (source:User {name: 'Eva'}), (target:User {name: 'Mercedes'})
+	CALL gds.shortestPath.dijkstra.stream('users_and_friends', {
+		sourceNode: source,
+		targetNode: target,
+		relationshipTypes: ['HAS_FRIEND']
+	})
+	YIELD path
+	RETURN path
+
+	Respuesta:
+╒═════╤══════════════╤══════════════╤═════════╤══════════════════════════════════╤═════════════════╤════════════════════════════════════════════════════════════╕
+│ idx │ source       │ target       │ cost    │ nodeNames                        │ costs           │ path                                                       │
+╞═════╪══════════════╪══════════════╪═════════╪══════════════════════════════════╪═════════════════╪════════════════════════════════════════════════════════════╡
+│  0  │ "Eva"        │ "Mercedes"   │ 4.0     │ ["Eva", "Andrés", "Jimena",      │ [0.0, 1.0, 2.0, │ [(:User {name: "Eva", birth_year: 1991}),                  │
+│     │              │              │         │ "Antonio", "Mercedes"]           │ 3.0, 4.0]       │ (:User {name: "Andrés", birth_year: 1994}),                │
+│     │              │              │         │                                  │                 │ (:User {name: "Jimena", birth_year: 2002}),                │
+│     │              │              │         │                                  │                 │ (:User {name: "Antonio", birth_year: 1963}),               │
+│     │              │              │         │                                  │                 │ (:User {name: "Mercedes", birth_year: 1964})]              │
+╘═════╧══════════════╧══════════════╧═════════╧══════════════════════════════════╧═════════════════╧════════════════════════════════════════════════════════════╛
+
+	16. Amb el teu graf GDS, determina el grau de sortida (influència) de cada usuari, emprant les relacions d'amistat, ordenats de major a menor.
+
+	CALL gds.degree.stream(
+		'users_and_friends',
+		{ orientation: 'REVERSE' }
+	)
+	YIELD nodeId, score
+	RETURN gds.util.asNode(nodeId).name AS user, score AS followers
+	ORDER BY followers DESC, user DESC
+
+	
+	Respuesta:
+╒══════════╤═════════╕
+│user      │followers│
+╞══════════╪═════════╡
+│"Jimena"  │4.0      │
+├──────────┼─────────┤
+│"Carla"   │4.0      │
+├──────────┼─────────┤
+│"David"   │3.0      │
+├──────────┼─────────┤
+│"Andrés"  │3.0      │
+├──────────┼─────────┤
+│"Sergio"  │2.0      │
+├──────────┼─────────┤
+│"Mercedes"│2.0      │
+├──────────┼─────────┤
+│"Isabel"  │2.0      │
+├──────────┼─────────┤
+│"Antonio" │2.0      │
+├──────────┼─────────┤
+│"Joan"    │1.0      │
+├──────────┼─────────┤
+│"Eva"     │1.0      │
+└──────────┴─────────┘
+
+
+
+	17. Amb el teu graf GDS, determina el valor de proximitat (closeness) de cada usuari, emprant les relacions d'amistat, ordenats de major a menor.  
+
+	CALL gds.closeness.stream('users_and_friends')
+	YIELD nodeId, score
+	RETURN gds.util.asNode(nodeId).name AS user, score
+	ORDER BY score DESC
+
+	Respuesta:
+╒══════════╤═══════════════════╕
+│user      │score              │
+╞══════════╪═══════════════════╡
+│"Jimena"  │0.6428571428571429 │
+├──────────┼───────────────────┤
+│"Carla"   │0.6                │
+├──────────┼───────────────────┤
+│"David"   │0.47368421052631576│
+├──────────┼───────────────────┤
+│"Antonio" │0.47368421052631576│
+├──────────┼───────────────────┤
+│"Isabel"  │0.45               │
+├──────────┼───────────────────┤
+│"Andrés"  │0.42857142857142855│
+├──────────┼───────────────────┤
+│"Sergio"  │0.391304347826087  │
+├──────────┼───────────────────┤
+│"Mercedes"│0.36               │
+├──────────┼───────────────────┤
+│"Joan"    │0.34615384615384615│
+├──────────┼───────────────────┤
+│"Eva"     │0.3103448275862069 │
+└──────────┴───────────────────┘
+
+
+	18. Amb el teu graf GDS, determina el valor d'intermediació (betweenness) de cada usuari, emprant les relacions d'amistat, ordenats de major a menor.
+
+	CALL gds.betweenness.stream('users_and_friends')
+	YIELD nodeId, score
+	RETURN gds.util.asNode(nodeId).name AS name, score
+	ORDER BY score DESC
+	
+	Respuesta:
+╒══════════╤══════════════════╕
+│name      │score             │
+╞══════════╪══════════════════╡
+│"Antonio" │29.333333333333332│
+├──────────┼──────────────────┤
+│"Jimena"  │24.5              │
+├──────────┼──────────────────┤
+│"Andrés"  │16.833333333333332│
+├──────────┼──────────────────┤
+│"David"   │13.666666666666666│
+├──────────┼──────────────────┤
+│"Sergio"  │7.833333333333333 │
+├──────────┼──────────────────┤
+│"Joan"    │7.5               │
+├──────────┼──────────────────┤
+│"Mercedes"│6.666666666666666 │
+├──────────┼──────────────────┤
+│"Isabel"  │6.333333333333332 │
+├──────────┼──────────────────┤
+│"Eva"     │4.5               │
+├──────────┼──────────────────┤
+│"Carla"   │3.833333333333333 │
+└──────────┴──────────────────┘
+
+
+	19. Determina el nombre de triangles de cada usuari, emprant les relacions d'amistat, ordenats de major a menor nombre. Per fer-ho, abans has de projectar la part necessària del graf a un nou graf GDS no dirigit.
+
+	// Creación de GDS
+	CALL gds.graph.project(
+		'users_and_friends_undirected',
+		'User',
+		{
+			HAS_FRIEND: {
+				orientation: 'UNDIRECTED'
+			}
+		}
+	)
+
+	// Recuento de triángulos
+	CALL gds.triangleCount.stream('users_and_friends_undirected')
+	YIELD nodeId, triangleCount
+	RETURN gds.util.asNode(nodeId).name AS name, triangleCount
+	ORDER BY triangleCount DESC
+	
+	Respuesta:
+╒══════════╤═════════════╕
+│name      │triangleCount│
+╞══════════╪═════════════╡
+│"Antonio" │3            │
+├──────────┼─────────────┤
+│"Isabel"  │3            │
+├──────────┼─────────────┤
+│"Jimena"  │3            │
+├──────────┼─────────────┤
+│"David"   │2            │
+├──────────┼─────────────┤
+│"Andrés"  │2            │
+├──────────┼─────────────┤
+│"Mercedes"│2            │
+├──────────┼─────────────┤
+│"Carla"   │2            │
+├──────────┼─────────────┤
+│"Sergio"  │2            │
+├──────────┼─────────────┤
+│"Eva"     │1            │
+├──────────┼─────────────┤
+│"Joan"    │1            │
+└──────────┴─────────────┘
+
+
+	20. Amb el teu graf original, tria dos usuaris que no siguin amics i determina el nombre de veïnats comú.
+
+	MATCH (david:User{name: 'David'})
+	MATCH (jimena:User {name: 'Jimena'})
+	RETURN gds.alpha.linkprediction.commonNeighbors(david, jimena) AS score
+	
+	Respuesta:
+╒═════╕
+│score│
+╞═════╡
+│7.0  │
+└─────┘
