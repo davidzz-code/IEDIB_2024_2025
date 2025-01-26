@@ -1,0 +1,93 @@
+# Importar datos
+wget https://raw.githubusercontent.com/tnavarrete-iedib/bigdata- 24-25/refs/heads/main/raw_titles.csv
+
+wget https://raw.githubusercontent.com/tnavarrete-iedib/bigdata- 24-25/refs/heads/main/raw_credits.csv
+
+hdfs dfs -mkdir netflix_movies
+hdfs dfs -put raw_titles.csv netflix_movies/
+hdfs dfs -put raw_credits.csv netflix_movies/
+
+
+# En el editor de Hive
+CREATE DATABASE netflix_movies;
+
+CREATE TABLE titles (
+    index INT,
+    id STRING,
+    title STRING,
+    type STRING,
+    release_year INT,
+    age_certification STRING,
+    runtime INT,
+    genres STRING,
+    production_countries STRING,
+    seasons FLOAT,
+    imdb_id STRING,
+    imdb_score FLOAT,
+    imdb_votes FLOAT
+)
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY '\t'
+TBLPROPERTIES (
+    "skip.header.line.count" = "1"
+);
+
+CREATE TABLE credits (
+    index INT,
+    person_id INT,
+    id STRING,
+    name STRING,
+    character STRING,
+    role STRING
+)
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY '\t'
+TBLPROPERTIES (
+    "skip.header.line.count" = "1"
+);
+
+LOAD DATA LOCAL INPATH '/home/cloudera/tarea_4/raw_titles.csv' INTO TABLE titles;
+LOAD DATA LOCAL INPATH '/home/cloudera/tarea_4/raw_credits.csv' INTO TABLE credits;
+
+# En el editor de Impala
+CREATE TABLE titles_parquet
+STORED AS PARQUET
+AS SELECT * FROM titles;
+
+CREATE TABLE credits_parquet
+STORED AS PARQUET
+AS SELECT * FROM credits;
+
+# SENTENCIAS
+# 1.
+SELECT * 
+FROM titles_parquet
+WHERE seasons > 1 AND type = 'SHOW' AND imdb_score IS NOT NULL
+ORDER BY imdb_score DESC
+LIMIT 10;
+
+# 2.
+SELECT release_year, sum(imdb_votes) AS total_votes
+FROM titles_parquet
+WHERE type = 'SHOW' AND imdb_votes IS NOT NULL
+GROUP BY release_year
+ORDER BY total_votes DESC
+LIMIT 10;
+
+# 3.
+SELECT name, count(name) AS films_count
+FROM credits_parquet
+WHERE `role` = 'DIRECTOR'
+GROUP BY name
+ORDER BY films_count DESC
+LIMIT 10;
+
+
+# 4.
+SELECT credits.name, AVG(titles.imdb_score) AS imdb_avg
+FROM credits_parquet AS credits
+JOIN titles_parquet AS titles ON credits.id = titles.id
+WHERE credits.`role` = 'ACTOR' AND titles.imdb_score IS NOT NULL
+GROUP BY credits.name
+ORDER BY imdb_avg DESC
+LIMIT 10;
