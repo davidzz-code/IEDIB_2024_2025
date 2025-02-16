@@ -1,0 +1,129 @@
+<body class="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-6">
+  <div class="text-center">
+    <h1 class="text-3xl font-bold text-gray-800 mb-2">Teachable Machine - Image Model</h1>
+    <h2 class="text-xl text-gray-600 mb-4">Is your posture good enough?</h2>
+    <p class="text-lg text-gray-500 mb-6">Let's check it!</p>
+    
+    <button id="btn-start" class="px-6 py-2 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 hover:cursor-pointer transition" type="button" onclick="initStart()">
+      Start
+    </button>
+    <button id="btn-stop" class="px-6 py-2 bg-red-500 text-white font-semibold rounded-lg shadow-md hover:bg-red-700 hover:cursor-pointer transition hidden" type="button" onclick="initStop()">
+      Stop
+    </button>
+  </div>
+
+  <div id="webcam-container" class="mt-8 border-2 border-black rounded-lg overflow-hidden"></div>
+  <div id="label-container" class="mt-4 text-lg font-semibold text-gray-700"></div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
+<script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+<script type="text/javascript">
+  // More API functions here:
+  // https://github.com/googlecreativelab/teachablemachine-community/tree/master/libraries/image
+
+  // the link to your model provided by Teachable Machine export panel
+  const URL = "https://teachablemachine.withgoogle.com/models/T--ciLSHj/";
+
+  let model, webcam, labelContainer, maxPredictions;
+
+  // Load the image model and setup the webcam
+  async function initStart() {
+    const btnStart = document.getElementById("btn-start");
+    const btnStop = document.getElementById("btn-stop");
+    const modelURL = URL + "model.json";
+    const metadataURL = URL + "metadata.json";
+
+    // load the model and metadata
+    // Refer to tmImage.loadFromFiles() in the API to support files from a file picker
+    // or files from your local hard drive
+    // Note: the pose library adds "tmImage" object to your window (window.tmImage)
+    model = await tmImage.load(modelURL, metadataURL);
+    maxPredictions = model.getTotalClasses(); // get total number of classes predicted by the model)
+
+    // Convenience function to setup a webcam
+    const flip = true; // whether to flip the webcam
+    webcam = new tmImage.Webcam(200, 200, flip); // width, height, flip
+    await webcam.setup(); // request access to the webcam
+    await webcam.play();
+    window.requestAnimationFrame(loop);
+
+    // append elements to the DOM and restart color
+    const webcamContainer = document.getElementById("webcam-container");
+    if (webcamContainer.classList.contains("grayscale")) {
+      webcamContainer.classList.remove("grayscale");
+    }
+
+    if (webcamContainer.childNodes.length > 0) {
+      webcamContainer.removeChild(webcamContainer.childNodes[0]);
+    }
+    document.getElementById("webcam-container").appendChild(webcam.canvas);
+    labelContainer = document.getElementById("label-container");
+    for (let i = 0; i < maxPredictions; i++) { // and class labels
+        labelContainer.appendChild(document.createElement("div"));
+    }
+
+    if (btnStart.classList.contains("hidden")) {
+      btnStart.classList.remove("hidden");
+      btnStop.classList.add("hidden");
+    } else {
+      btnStart.classList.add("hidden");
+      btnStop.classList.remove("hidden");
+    }
+  }
+
+  async function initStop() {
+    const btnStart = document.getElementById("btn-start");
+    const btnStop = document.getElementById("btn-stop");
+    const webcamContainer = document.getElementById("webcam-container");
+
+    if (webcam){
+      await webcam.stop();
+      webcamContainer.classList.add("grayscale");
+    }
+
+    if (btnStart.classList.contains("hidden")) {
+      btnStart.classList.remove("hidden");
+      btnStop.classList.add("hidden");
+    } else {
+      btnStart.classList.add("hidden");
+      btnStop.classList.remove("hidden");
+    }
+  }
+
+  async function loop() {
+      webcam.update(); // update the webcam frame
+      await predict();
+      window.requestAnimationFrame(loop);
+  }
+
+  // run the webcam image through the image model
+  async function predict() {
+    const prediction = await model.predict(webcam.canvas);
+    labelContainer.innerHTML = ""; // Limpiar etiquetas previas
+
+    for (let i = 0; i < maxPredictions; i++) {
+        const className = prediction[i].className;
+        const probability = (prediction[i].probability * 100).toFixed(2); // Convertir a porcentaje
+
+        // Crear el contenedor de la barra
+        const container = document.createElement("div");
+        container.className = "mb-2 w-64"; // Ajusta el ancho si es necesario
+
+        // Etiqueta de la clase
+        const label = document.createElement("div");
+        label.className = "text-sm font-semibold text-gray-700 mb-1";
+        label.innerText = `${className} (${probability}%)`;
+
+        // Barra de progreso
+        const progressBar = document.createElement("div");
+        progressBar.className = "h-4 bg-gray-300 rounded-lg overflow-hidden";
+        progressBar.innerHTML = `<div class="h-full bg-blue-500" style="width: ${probability}%;"></div>`;
+
+        // Agregar elementos al contenedor principal
+        container.appendChild(label);
+        container.appendChild(progressBar);
+        labelContainer.appendChild(container);
+    }
+}
+</script>
