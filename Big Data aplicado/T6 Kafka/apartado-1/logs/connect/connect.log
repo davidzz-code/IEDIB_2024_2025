@@ -1,0 +1,1 @@
+[2025-03-21 18:04:11,045] INFO [AdminClient clientId=connect-cluster-shared-admin] Node 0 disconnected. (org.apache.kafka.clients.NetworkClient:1017)

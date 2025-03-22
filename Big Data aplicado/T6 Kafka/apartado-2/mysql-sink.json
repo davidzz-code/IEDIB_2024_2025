@@ -1,0 +1,24 @@
+{
+  "name": "mysql-sink-bluesky",
+  "config": {
+    "connector.class": "io.confluent.connect.jdbc.JdbcSinkConnector",
+    "tasks.max": 1,
+    "topics": "bluesky_apartado_2",
+
+    "connection.url": "jdbc:mysql://localhost/bluesky_db",
+    "connection.user": "root",
+    "connection.password": "root1234",
+
+    "auto.create": "true",
+    "auto.evolve": "true",
+    "insert.mode": "insert",
+
+    "key.converter": "org.apache.kafka.connect.storage.StringConverter",
+    "value.converter": "org.apache.kafka.connect.json.JsonConverter",
+    "value.converter.schemas.enable": "true",
+
+    "transforms": "ReplaceFieldNames",
+    "transforms.ReplaceFieldNames.type": "org.apache.kafka.connect.transforms.ReplaceField$Value",
+    "transforms.ReplaceFieldNames.whitelist": "uri,cid,text,createdAt,handle,displayName,avatar"
+  }
+}

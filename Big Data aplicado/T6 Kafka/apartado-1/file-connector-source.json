@@ -1,0 +1,9 @@
+{
+  "name": "file-source-distributed",
+  "config": {
+    "connector.class": "FileStreamSource",
+    "tasks.max": "1",
+    "file": "/home/david/Desktop/kafka_2.13-3.8.1/apartado1.csv",
+    "topic": "apartado-1"
+  }
+}

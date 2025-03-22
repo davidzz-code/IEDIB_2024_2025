@@ -1,0 +1,56 @@
+{
+  "schema": {
+      "type": "struct",
+      "fields": [
+        {
+            "type": "struct",
+            "fields": [
+              { "type": "string", "optional": false, "field": "uri" },
+              { "type": "string", "optional": false, "field": "cid" }
+            ],
+            "optional": false,
+            "field": "id"
+        },
+        { "type": "string", "optional": false, "field": "text" },
+        {
+            "type": "array",
+            "items": { "type": "string", "optional": false },
+            "optional": false,
+            "field": "langs"
+        },
+        {
+            "type": "int64",
+            "optional": true,
+            "name": "org.apache.kafka.connect.data.Timestamp",
+            "version": 1,
+            "field": "createdAt"
+        },
+        {
+            "type": "struct",
+            "fields": [
+              { "type": "string", "optional": false, "field": "handle" },
+              { "type": "string", "optional": true, "field": "displayName" },
+              { "type": "string", "optional": true, "field": "avatar" }
+            ],
+            "optional": false,
+            "field": "author"
+        }
+      ],
+      "optional": false,
+      "name": "status"
+  },
+  "payload": {
+      "id": {
+        "uri": "at://did:plc:qxdxlfpytidriazlgzoa5wfv/app.bsky.feed.post/3lkvxxtu24u2c",
+        "cid": "bafyreif57curdy32rsigwdnwenszjj5y3pxfzfupbzvhhsovsb2pqox7dm"
+      },
+      "text": "Primer post sobre la IA generativa! #GenerativeAI",
+      "langs": ["es"],
+      "createdAt": 1742586269991,
+      "author": {
+        "handle": "d-ramirez.bsky.social",
+        "displayName": null,
+        "avatar": "https://cdn.bsky.app/img/avatar/plain/did:plc:qxdxlfpytidriazlgzoa5wfv/bafkreid35m5tfhxuiiv5bddglrq2cdyfejxzjqxsiesdus5v72mmwsvmxq@jpeg"
+      }
+  }
+}

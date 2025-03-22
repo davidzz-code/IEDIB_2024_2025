@@ -1,0 +1,31 @@
+{
+  "schema": {
+      "type": "struct",
+      "fields": [
+        { "type": "string", "optional": false, "field": "uri" },
+        { "type": "string", "optional": false, "field": "cid" },
+        { "type": "string", "optional": false, "field": "text" },
+        {
+            "type": "int64",
+            "optional": true,
+            "name": "org.apache.kafka.connect.data.Timestamp",
+            "version": 1,
+            "field": "createdAt"
+        },
+        { "type": "string", "optional": false, "field": "handle" },
+        { "type": "string", "optional": true, "field": "displayName" },
+        { "type": "string", "optional": true, "field": "avatar" }
+      ],
+      "optional": false,
+      "name": "status"
+  },
+  "payload": {
+      "uri": "at://did:plc:qxdxlfpytidriazlgzoa5wfv/app.bsky.feed.post/3lkxop7zpgm2c",
+      "cid": "bafyreicvjyvmx3cinmrgzfd6dgemnmpjhffudu7zuyrw74iq6kermhbe7m",
+      "text": "Siempre quiero descubrir más sobre la IA generativa! #GenerativeAI",
+      "createdAt": 1742645036571,
+      "handle": "d-ramirez.bsky.social",
+      "displayName": null,
+      "avatar": "https://cdn.bsky.app/img/avatar/plain/did:plc:qxdxlfpytidriazlgzoa5wfv/bafkreid35m5tfhxuiiv5bddglrq2cdyfejxzjqxsiesdus5v72mmwsvmxq@jpeg"
+  }
+}
