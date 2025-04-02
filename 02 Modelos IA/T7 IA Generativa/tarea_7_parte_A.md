@@ -39,20 +39,20 @@ Genera un índice de doce capítulos con una breve sinopsis que estructuren la h
 
  ### 2.	Con prompts sucesivos breves, extraed los capítulos consecutivos de vuestra obra. Podéis insertar correcciones si el resultado obtenido no se ajusta a vuestra idea. 
  ### 3.	Obtened la URL de la conversación y añadidla al cuaderno de Colab que entregaréis en esta tarea.  
-  Respondiendo al punto 2 y 3 aquí adjunto [el enlace a la conversación](https://chatgpt.com/share/67ec55e5-c6e4-8005-91dd-b661c85fdc96) con ChatGPT.
-  Una vez ha generado el índice le he pedido que genere el libro por capítulos con algunos detalles de mejora después de cada capítulo.
+  Respondiendo al punto 2 y 3 dejo adjunto entre los archivos de la entrega el PDF de la conversación que he tenido con ChatGPT. Una vez ha generado el índice le he pedido que genere el libro por capítulos con algunos detalles de mejora después de cada capítulo.
 
-  Únicamente he generado 3 debido a que al ser una versión gratuita de ChatGPT pierde el contexto fácilmente por la cantidad de tokens. Esto no significa que genere un mal resultado pero sí que limita a la hora de querer generar un libro de 12 capítulos con una cohesión lógica.
-  Por lo tanto con estos 3 primeros capítulos he podido comprobar la calidad de la generación para esta situación.
+He generado los 12 capítulos del libro, pero como estoy usando la versión gratuita de ChatGPT, a veces pierde el contexto en ciertos detalles debido a la cantidad de tokens. Un ejemplo claro es que ha a repetido ciertos patrones en los títulos de los capítulos, como empezar varios con “Ecos de…” (Ecos de la oscuridad, Ecos del pasado, Ecos de la niebla, etc.).
+
+Esto no significa que el resultado sea malo, ya que el contenido generado es interesante, pero sí limita la variedad y cohesión del libro cuando se busca una historia bien estructurada. Aun así, esta prueba me ha servido para evaluar la calidad de la generación y entender mejor sus puntos fuertes y sus limitaciones en un proyecto como este.
 
  
 ### 4.	Evaluad el resultado obtenido. ¿Hasta qué punto sirve como producto final? ¿Necesita mucho más trabajo? ¿El resultado es mejor o peor de lo que esperabais?  
-El resultado no está nada mal teniendo en cuenta el esfuerzo y trabajo por mi parte que ha podido suponer. En el caso de preguntarnos si sirve como producto final diría que no.
+El resultado está sorprendentemente bien conseguido teniendo en cuenta el esfuerzo y trabajo por mi parte que ha podido suponer. En el caso de preguntarnos si sirve como producto final diría que no.
 
-La razón es que a pesar de ser un resultado aceptable no tiene la delicadeza que podría tener un escritor o escritora en el sentido de pensar hacia donde queremos llevar a los personajes y la historia.
+La razón es que a pesar de ser un resultado bueno, no tiene la delicadeza que podría tener un escritor o escritora en el sentido de pensar hacia donde queremos llevar a los personajes y la trama.
 
-La verdad que la manera de escribir me ha sorprendido mucho; las decripciones de lugares o los momentos de crear misterio me consiguen transportar realmente al mundo que se plantea, sin embargo, se puede notar que está improvisando lo que ocurre sin tener un plan estructurado para la historia.
+La verdad que la manera de escribir me ha sorprendido mucho; las decripciones de lugares, los momentos de crear misterio o incluso la manera de hilar los temas de un capítulo a otro sin olvidar el contexto de los personajes me consiguen transportar realmente al mundo que se plantea, sin embargo, se puede notar que está improvisando lo que ocurre sin tener un plan estructurado para la historia.
 
-Sobre si necesita más trabajo, depende mucho para qué contexto estemos hablando. Es muy posible que crear un cuento para niños sea completamente accesible sin necesidad de mucho trabajo extra. Pero si hablamos de un libro enfocado a gente más adulta y con una historia más compleja, entonces sí creo que le falte trabajo.
+Sobre si necesita más trabajo, depende mucho para qué contexto estemos hablando. Es muy posible que crear un cuento infantil medianamente educativo e interesante sea completamente accesible sin necesidad de mucho trabajo extra. Pero si hablamos de un libro enfocado a gente más adulta y con una narrativa más compleja, entonces sí creo que le falta trabajo.
 
-En conclusión podría decir que el resultado es mejor de lo que me esperaba en la manera de escribir pero un poco peor en los detalles para guiar al espectador a través de un camino predefinido por un escritor, o en este caso, por una IA.
+En conclusión podría decir que el resultado es mejor de lo que me esperaba en la manera de escribir, tengo que admitir que incluso me conseguía enganchar a seguir leyendo cada capítulo generado. Pero opino que es un poco peor en los detalles para guiar al espectador a través de un camino bien estructurado por un escritor, o en este caso, por una IA.
