@@ -1,0 +1,7 @@
+Motivo de entregar dos archivos en lugar de uno:
+
+He decidido entregar dos cuadernos Jupyter porque, al empezar con el ejercicio sobre GANs, no conseguí buenos resultados en el primer archivo. En el cuaderno “tarea_7_CIFAR_10.ipynb”, intenté hacer varios cambios, como modificar el dataset y ajustar las capas y filtros, pero los resultados no fueron los esperados. A pesar de eso, me pareció interesante documentar todas las pruebas y modificaciones que fui haciendo a lo largo del proceso, por eso lo que lo incluyo en la entrega.
+
+Tras la frustración de no conseguir resultados, decidí crear un segundo cuaderno, "tarea_7_MNIST", simplifiqué un poco el enfoque, trabajando con el dataset original (MNIST) y haciendo ajustes solo en las capas y filtros. Este enfoque me dio mejores resultados y pude completar el ejercicio con imágenes generadas que funcionan muy bien.
+
+Aunque no logré un buen resultado en el primer cuaderno, lo entrego porque la verdad es que le dediqué bastante tiempo y me parece interesante compartir el proceso y las pruebas que documenté ya que pueden pueden ser útiles.
